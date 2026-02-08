@@ -1,6 +1,6 @@
 {
-  "name": "LAN Notlar",
-  "short_name": "LAN Notlar",
+  "name": "notesLAN",
+  "short_name": "notesLAN",
   "description": "LAN paylaşımlı not uygulaması",
   "start_url": "/",
   "display": "standalone",
