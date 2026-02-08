@@ -1,5 +1,5 @@
 const CACHE_NAME = 'lan-notlar-v1';
-const STATIC_URLS = ['/', '/index.html', '/styles.css', '/app.js', '/manifest.json', '/icons/icon-192.png', '/icons/icon-512.png'];
+const STATIC_URLS = ['/', '/index.html', '/styles.css', '/app.js', '/manifest.json', '/icons/lan-notes.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
