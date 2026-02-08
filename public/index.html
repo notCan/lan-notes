@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f0f14">
+  <title>LAN Notlar</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="login-view" class="view">
+    <div class="login-card">
+      <h1>LAN Notlar</h1>
+      <p class="login-subtitle">Notlarınıza erişmek için giriş yapın</p>
+      <form id="login-form">
+        <div class="field">
+          <label for="login-username">Kullanıcı adı</label>
+          <input type="text" id="login-username" autocomplete="username" required placeholder="Kullanıcı adı">
+        </div>
+        <div class="field">
+          <label for="login-password">Şifre</label>
+          <input type="password" id="login-password" autocomplete="current-password" required placeholder="Şifre">
+        </div>
+        <div class="field field-checkbox">
+          <label>
+            <input type="checkbox" id="login-remember" checked>
+            Beni hatırla
+          </label>
+        </div>
+        <p id="login-error" class="form-error hidden"></p>
+        <button type="submit" class="btn btn-primary btn-block">Giriş yap</button>
+      </form>
+      <p class="login-switch">Hesabınız yok mu? <button type="button" id="btn-show-register" class="btn-link">Kayıt ol</button></p>
+    </div>
+    <div id="register-card" class="login-card hidden">
+      <h1>Kayıt ol</h1>
+      <form id="register-form">
+        <div class="field">
+          <label for="register-username">Kullanıcı adı</label>
+          <input type="text" id="register-username" autocomplete="username" required placeholder="Kullanıcı adı" minlength="2">
+        </div>
+        <div class="field">
+          <label for="register-password">Şifre</label>
+          <input type="password" id="register-password" autocomplete="new-password" required placeholder="Şifre">
+        </div>
+        <p id="register-error" class="form-error hidden"></p>
+        <button type="submit" class="btn btn-primary btn-block">Kayıt ol</button>
+      </form>
+      <p class="login-switch">Zaten hesabınız var mı? <button type="button" id="btn-show-login" class="btn-link">Giriş yap</button></p>
+    </div>
+  </div>
+
+  <div id="app-view" class="view hidden">
+  <div id="list-view" class="view">
+    <header class="header header-list">
+      <div class="header-left">
+        <span id="connection-status" class="status-dot" aria-live="polite" title="Bağlantı"></span>
+        <span id="user-name" class="user-name"></span>
+      </div>
+      <button type="button" id="btn-logout" class="btn btn-secondary">Çıkış</button>
+    </header>
+    <main class="main">
+      <div class="sticky-new-note">
+        <button type="button" id="btn-new-note" class="btn btn-primary">Yeni not</button>
+      </div>
+      <ul id="notes-list" class="notes-list"></ul>
+      <p id="empty-state" class="empty-state hidden"><strong>Henüz not yok</strong> Yeni not butonuna tıklayarak ilk notunuzu ekleyin.</p>
+    </main>
+  </div>
+
+  <div id="editor-view" class="view hidden">
+    <header class="header">
+      <h2 id="editor-title">Not düzenle</h2>
+      <div class="header-actions">
+        <button type="button" id="btn-cancel" class="btn btn-secondary">İptal</button>
+        <button type="button" id="btn-save" class="btn btn-primary">Kaydet</button>
+      </div>
+    </header>
+    <main class="main editor-main">
+      <form id="note-form">
+        <div class="field">
+          <label for="note-title">Başlık</label>
+          <input type="text" id="note-title" required placeholder="Not başlığı">
+        </div>
+
+        <div class="section-block">
+          <h3>Alt başlıksız notlar</h3>
+          <div id="top-level-items" class="items-list"></div>
+          <div class="item-actions">
+            <button type="button" id="btn-add-top-text" class="btn btn-small">+ Metin ekle</button>
+            <button type="button" id="btn-add-top-file" class="btn btn-small">+ Dosya ekle</button>
+            <input type="file" id="input-top-file" class="hidden" accept="*">
+          </div>
+        </div>
+
+        <div id="sections-container"></div>
+        <button type="button" id="btn-add-section" class="btn btn-secondary">+ Alt başlık ekle</button>
+      </form>
+    </main>
+  </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(function() {});
+    }
+  </script>
+</body>
+</html>

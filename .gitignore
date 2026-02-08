@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Environment and secrets
+.env
+.env.local
+
+# App data (user-specific; do not commit)
+uploads/*
+!uploads/.gitkeep
+data/users.json
+data/users/
+
+# Logs and OS
+*.log
+.DS_Store
+Thumbs.db
